@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultorio Médico</title>
+</head>
+<body>
+    <h1>Bienvenido al Consultorio Médico</h1>
+    <p>A continuación se mostrarán los médicos:</p>
+    
+    <!-- Aquí se incluiría el código para mostrar la lista de médicos -->
+    <ul id="medicos-lista"></ul>
+
+    <script>
+        fetch('/medicos')
+            .then(response => response.json())
+            .then(data => {
+                const listaMedicos = document.getElementById('medicos-lista');
+                data.forEach(medico => {
+                    const li = document.createElement('li');
+                    li.textContent = `${medico.nombre} - ${medico.especialidad}`;
+                    listaMedicos.appendChild(li);
+                });
+            })
+            .catch(error => console.error('Error al cargar los médicos:', error));
+    </script>
+</body>
+</html>
